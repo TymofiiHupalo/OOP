@@ -15,16 +15,29 @@ int main()
     file >> a.grivnya >> a.kopiyka >> c1;
     file >> b.grivnya >> b.kopiyka >> c2;
     file.close();
-    money result = suma(a, b);
-    money result1 = mnozhenya(a, c1); 
-    money result2 = mnozhenya(b, c2);
-    
-    //money result3 = zaokruglenya(result1);
-    
-    vivedenya(result);
-    vivedenya(result1);
-    vivedenya(result2);
-    //vivedenya(result3);
-
+    int choose;
+    cout << "Choose the operation: 1 - sum, 2 - Exit" << endl;
+    cin >> choose;
+    switch(choose){
+        case 1: {
+            vivedenya(a);
+            vivedenya(b);
+            cout << "Resultat mnozhenya" << endl;
+            money g = mnozhenya(a, c1);
+            money h = mnozhenya(b, c2);
+            vivedenya(g);
+            vivedenya(h);
+            money result = suma(g, h);
+            cout << "Result suma" << endl;
+            vivedenya(result);
+            break;
+    }
+        case 2: {
+            cout << "Exit" << endl;
+            break;}
+        default:{
+            cout << "Error" << endl;
+        }
+    }
     return 0;
 }

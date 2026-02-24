@@ -14,7 +14,7 @@ money suma(money &a, money &b){
 }
 money mnozhenya(money &a, int b){
     money cina;
-    if(b > 0){
+    if(b >= 0){
         cina.grivnya = a.grivnya * b;
         cina.kopiyka = a.kopiyka * b;
         if(cina.kopiyka >= 100){
