@@ -19,7 +19,7 @@ void Dyhotomia_class::setTolerance (double vol_eps)
 double Dyhotomia_class::f(double x)
 {
     double znamenik = (3 - sin(3.6*x));
-    if (fabs(znamenik) < 1e-9) {
+    if (fabs(znamenik) < eps) {
         cout << "Ділення на нуль" << endl;
         return 0;
     }
@@ -29,8 +29,8 @@ double Dyhotomia_class::f(double x)
 }
 double Dyhotomia_class::poxidna(double x)
 {
-    double deltax = 1e-9;
-    if (fabs(x) < 1e-9) {
+    double deltax = eps;
+    if (fabs(x) < eps) {
         cout << "Error" << endl;
         return 0;
     }
@@ -38,9 +38,12 @@ double Dyhotomia_class::poxidna(double x)
 }
 double Dyhotomia_class::Dyhotomia()
     {
-        if(eps < 1e-15 || eps == 0){
+        if(eps == 0){
             cout << "Поганий eps" << endl;
             return 0;
+        }
+        if(eps <= 1e-16){
+            eps = 1e-15;
         }
         if(f(a)*f(b) > 0)
         {
@@ -52,10 +55,10 @@ double Dyhotomia_class::Dyhotomia()
                 double c = (a + b) / 2;
                 if(f(a)*f(c) <= 0){
                     b = c;
-                    }
+                }
                 else{
                     a = c;
-                }
+                    }
             }
         }
         x = (a + b) / 2;
@@ -64,7 +67,7 @@ double Dyhotomia_class::Dyhotomia()
 }
 double Dyhotomia_class::Newton()
 {
-    if(eps < 1e-15 || eps == 0){
+    if(eps == 0){
         cout << "Поганий eps" << endl;
         return 0;
     }
@@ -74,7 +77,7 @@ double Dyhotomia_class::Newton()
         return 0;
     }
     while (true){
-        if (fabs(poxidna(x)) < 1e-9){
+        if (fabs(poxidna(x)) < eps){
             cout << "Error" << endl;
             break;
         }
